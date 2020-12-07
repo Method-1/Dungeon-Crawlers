@@ -12,17 +12,14 @@ class Characters:
 
 class Knight(Characters):
     def __init__(self, name):
-        self.name = name
         super().__init__(name, 'Knight', 5, 9, 6, 4, "Shield Block")
 
 class Wizard(Characters):
     def __init__(self, name):
-        self.name = name
         super().__init__(name, 'Wizard', 6, 4, 9, 5, "Blinding Light")
 
 class Thief(Characters):
     def __init__(self, name):
-        self.name = name
         super().__init__(name, 'Thief', 7, 5, 5, 7, 'Critical Hit')
 
 name = input("Username: ")
