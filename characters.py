@@ -32,6 +32,7 @@ class Thief(Characters):
 #y = Wizard("Bajs").all_stats()
 #lista = [x, y]
 #print(lista)
+#test
 
 name = input("Username: ")
 test_character = Knight(name)
