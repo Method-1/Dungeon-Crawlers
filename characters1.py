@@ -38,4 +38,3 @@ name = input("Username: ")
 test_character = Knight(name)
 test_character.money['Wallet'] = 0 + 2
 print(test_character.all_stats())
-
