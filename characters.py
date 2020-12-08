@@ -7,8 +7,12 @@ class Characters:
         self.attack = attack
         self.agility = agility
         self.special = special
-        self.allstats = {'Username': f'{name}', 'Class': f'{character}', 'Initiative': f'{initiative}', 'Endurance': f'{endurance}',
-            'Attack': f'{attack}', 'Agility': f'{agility}', 'Special': f'{special}'}
+
+    def all_stats(self):
+        allstats = {'Username': f'{self.name}', 'Class': f'{self.character}', 'Initiative': f'{self.initiative}', 'Endurance': f'{self.endurance}',
+            'Attack': f'{self.attack}', 'Agility': f'{self.agility}', 'Special': f'{self.special}'}
+        return allstats
+
 
 class Knight(Characters):
     def __init__(self, name):
@@ -24,4 +28,4 @@ class Thief(Characters):
 
 name = input("Username: ")
 test_character = Knight(name)
-print(test_character.allstats)
+print(test_character.all_stats())
