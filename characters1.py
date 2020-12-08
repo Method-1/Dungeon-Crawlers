@@ -14,6 +14,9 @@ class Characters:
             'Attack': f'{self.attack}', 'Agility': f'{self.agility}', 'Special': f'{self.special}', 'Wallet': f'{self.money}'}
         return allstats
 
+class handle_functions(Characters):  # Class that allows you to handle functions/methods that exist in parentclass
+    def __init__(self):
+        pass
 
 class Knight(Characters):
     def __init__(self, name):
@@ -32,9 +35,12 @@ class Thief(Characters):
 #y = Wizard("Bajs").all_stats()
 #lista = [x, y]
 #print(lista)
-#test
-
 name = input("Username: ")
 test_character = Knight(name)
-test_character.money['Wallet'] = 0 + 2
-print(test_character.all_stats())
+attr_value = test_character.__dict__
+print(attr_value)
+print(attr_value['money']['Wallet'] + 2)
+#test_character.money['Wallet'] = 0 + 2
+
+#vars(test_character.all_stats())
+#print(test_character.all_stats())
