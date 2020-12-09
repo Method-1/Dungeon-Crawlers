@@ -1,5 +1,5 @@
 class Characters:
-    def __init__(self, name, character, initiative, endurance, attack, agility, special, money):
+    def __init__(self, name, character, initiative, endurance, attack, agility, special, wallet):
         self.name = name
         self.character = character
         self.initiative = initiative
@@ -7,40 +7,25 @@ class Characters:
         self.attack = attack
         self.agility = agility
         self.special = special
-        self.money = money
+        self.wallet = wallet
 
-    def all_stats(self):
-        allstats = {'Username': f'{self.name}', 'Class': f'{self.character}', 'Initiative': f'{self.initiative}', 'Endurance': f'{self.endurance}',
-            'Attack': f'{self.attack}', 'Agility': f'{self.agility}', 'Special': f'{self.special}', 'Wallet': f'{self.money}'}
-        return allstats
+    def __repr__(self):
+        return "{:<10}{:<14}{:<12}{:<10}{:<10}{:<8}{:<14}{:6}".format(self.name, self.character, self.initiative, self.endurance, self.attack, self.agility, self.special, self.wallet)
 
-class handle_functions(Characters):  # Class that allows you to handle functions/methods that exist in parentclass
-    def __init__(self):
-        pass
 
 class Knight(Characters):
-    def __init__(self, name):
-        super().__init__(name, 'Knight', 5, 9, 6, 4, "Shield Block", {'Wallet': 0})
+    def __init__(self, name, character, initiative, endurance, attack, agility, special, wallet):
+        super().__init__(name, character, initiative, endurance, attack, agility, special, wallet)
+        self.name = name
+
 
 class Wizard(Characters):
-    def __init__(self, name):
-        super().__init__(name, 'Wizard', 6, 4, 9, 5, "Blinding Light", {'Wallet': 0})
+    def __init__(self, name, character, initiative, endurance, attack, agility, special, wallet):
+        super().__init__(name, character, initiative, endurance, attack, agility, special, wallet)
+        self.name = name
+
 
 class Thief(Characters):
-    def __init__(self, name):
-        super().__init__(name, 'Thief', 7, 5, 5, 7, 'Critical Hit', {'Wallet': 0})
-
-
-#x = Knight("adi").all_stats()
-#y = Wizard("Bajs").all_stats()
-#lista = [x, y]
-#print(lista)
-name = input("Username: ")
-test_character = Knight(name)
-attr_value = test_character.__dict__
-print(attr_value)
-print(attr_value['money']['Wallet'] + 2)
-#test_character.money['Wallet'] = 0 + 2
-
-#vars(test_character.all_stats())
-#print(test_character.all_stats())
+    def __init__(self, name, character, initiative, endurance, attack, agility, special, wallet):
+        super().__init__(name, character, initiative, endurance, attack, agility, special, wallet)
+        self.name = name
