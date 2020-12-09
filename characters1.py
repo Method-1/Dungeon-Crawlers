@@ -9,7 +9,7 @@ class Characters:
         self.special = special
         self.money = money
 
-    def all_stats(self):
+    def all_stats(self):  # Maybe create a function that allows others to print out all the parent attributes as a dict instead of making a dict like you did here??
         allstats = {'Username': f'{self.name}', 'Class': f'{self.character}', 'Initiative': f'{self.initiative}', 'Endurance': f'{self.endurance}',
             'Attack': f'{self.attack}', 'Agility': f'{self.agility}', 'Special': f'{self.special}', 'Wallet': f'{self.money}'}
         return allstats
