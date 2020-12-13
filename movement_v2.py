@@ -1,6 +1,7 @@
 from DungeonWorld import DungeonMap
 from pickle_menu import *
 from monster_treasure import *
+from fight_adi import *
 
 
 class Movement:
@@ -10,9 +11,10 @@ class Movement:
         self.player = startzone
         self.walls = (0, 0)
         self.clean = ("\n" * 100)
-        self.finished = 1
+        self.banana = 0
 
-    def move_player(self, d, startzone, mapsize, a):
+
+    def move_player(self, d, startzone, mapsize, a, in_game_char, all_obj):
         x = self.player[0]
         y = self.player[1]
         pos = startzone
@@ -57,7 +59,7 @@ class Movement:
                 # EXIT GAME! HIGHSCORE! SAVE CHARACTER!
                 banner_text("You pull the lever and is met with fresh air and sound of outside, you leave the dungeon")
                 input()
-                quit_game()
+                quit_game()    
 
         if (pos[1] < 0) or (pos[0] < 0) or (pos[0] > (mapsize - 1)) or (pos[1] > (mapsize - 1)):
             print(self.clean)
@@ -67,19 +69,44 @@ class Movement:
             self.player = (x, y)
             pos = self.player
         else:
+            if a.board[self.player[1]][self.player[0]] == "+":
+                handle = HandleFunc()
+                monst = handle.ShuffleMonster()
+            
+                for i in monst:
+                    if i != None:
+                        fightOrFlight(i, in_game_char)
+
+                    #else:
+                    #    break
+                handle2 = ShuffleTest()
+                loot = handle2.ShuffleBro()
+                summa = sum(loot)
+                print(loot)
+                print(summa)
+                handle3 = Handle()
+                # all_obj = handle3.load_pickle()
+                print(all_obj)
+                
+                for i in all_obj:
+                    if i.name == in_game_char.name:
+                        in_game_char.wallet += summa
+                handle3.edit_char(all_obj)
+
             a.board[self.goal[1]][self.goal[0]] = "E"
             a.board[self.player[1]][self.player[0]] = "O"
             a.board[y][x] = "-"
             a.board[self.start[1]][self.start[0]] = "S"
 
-def ok(mapsize, startzone, endzone):
+def ok(mapsize, startzone, endzone, in_game_char, all_obj):
     c = Movement(startzone, endzone)
     a = DungeonMap(mapsize)
+    in_game_char = in_game_char
 
-    while c.player != 5:
+    while c.banana != 5:
         print(c.clean)
         print("You ponder which direction to go next.")
         print("Theres a light both left and right of you, but also from a couple stairs leading up and down...")
         a.display_map()
         d = input("Which way? (d, a, w, s)  >>")
-        c.move_player(d, startzone, mapsize, a)
+        c.move_player(d, startzone, mapsize, a, in_game_char, all_obj)
