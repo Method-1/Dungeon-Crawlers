@@ -16,6 +16,8 @@ class Characters:
         allstats = self.__dict__
         return allstats
     
+    def __repr__(self):
+        return "{:<10}{:<13}{:<13}{:<10}{:<10}{:<8}{:<19}{:<13}".format(self.name, self.character, self.initiative, self.endurance, self.attack, self.agility, self.special, self.wallet)
 
     def load_pickle(self): # load pickle file that collects all characters
         char_list = []
@@ -27,6 +29,11 @@ class Characters:
             except:
                 pass
         return char_list
+
+    def edit_char(self, datalist):
+        with open("saved_characters.pkl", "wb") as pf:
+            for i in datalist:
+                pickle.dump(i, pf)
 
     def save(self, character): # save characters in pickle file
         char_list = []
@@ -60,29 +67,3 @@ class Wizard(Characters):
 class Thief(Characters):
     def __init__(self, name):
         super().__init__(name, "Thief", 7, 5, 5, 7, "Critical Hit", 0)
-
-
-name = input("Name: ")
-# name2 = input("Name2: ")
-x = Knight(name)
-# y = Wizard(name2)
-#x.create_json('Test2')
-#x.save('Test2', x)
-#x.save('Test2', y)
-# test_list = []
-# test_list.append(x)
-# test_list.append(y)
-p = Handle()
-p.save(x)
-all_obj = p.load_pickle()
-obj1 = all_obj[0]
-obj2 = all_obj[1]
-obj3 = all_obj[2]
-# obj2 = all_obj[1]
-# obj1.wallet = 45
-# print(obj1.wallet)
-obj2.wallet = 10000
-stats_champs = f'First Champion: {obj1.all_stats()}\nSecond Champion: {obj2.all_stats()}\nThird Champion: {obj3.all_stats()}'
-print(stats_champs)
-#attr_dict = x.__dict__
-#attr_dict["agility"] += 85
