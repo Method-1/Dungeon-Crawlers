@@ -59,6 +59,7 @@ class Movement:
                 # EXIT GAME! HIGHSCORE! SAVE CHARACTER!
                 banner_text("You pull the lever and is met with fresh air and sound of outside, you leave the dungeon")
                 input()
+                self.banana = 5
                 quit_game()    
 
         if (pos[1] < 0) or (pos[0] < 0) or (pos[0] > (mapsize - 1)) or (pos[1] > (mapsize - 1)):
