@@ -3,6 +3,7 @@ from characters_adi import *
 from monster_treasure import *
 from pickle_menu import quit_game
 import sys
+import time
 
 
 def monster(mon):
@@ -66,7 +67,7 @@ def charAttack(mon, char, mon_hp):
             mon_hp -= 2
             if (mon_hp <= 0):
                 print (dialog5) # Character deals double damage
-                print (dialog9) # Monster dies
+                input (dialog9) # Monster dies
                 #break
             else:
                 print (dialog5) # Character deals double damage
@@ -78,7 +79,7 @@ def charAttack(mon, char, mon_hp):
             mon_hp -= 1
             if (mon_hp == 0):
                 print(dialog2) # Character attacks normally
-                print (dialog9) # Monster dies
+                input (dialog9) # Monster dies
                 #break
             else:
                 print(dialog2) # Character attacks normally
@@ -201,12 +202,12 @@ def fightOrFlight(mon, char):
             if (character(char)['special'] == 'Blinding Light' and special == True):
                 chanceToFlee = 8
                 print (dialog6) # Character use flashlight to escape
-                print("your escape was successful")
+                input("Your escape was successful!")
                 special = False
                 win = False
                 break
             if (successfulEscape == True):
-                print("your escape was successful")
+                input("Your escape was successful!")
                 win = False
                 break
             else:
@@ -216,7 +217,8 @@ def fightOrFlight(mon, char):
                     quit_game()
                     sys.exit()
                 else:
-                    print("You cant run from this battle, fight!")
+                    print("You attempt to run, but fail...")
+                    time.sleep(2)
                     print(dialog14)
     return win
 #tr = Troll | sk = Skeleton | sp = Giant spider | or = Orc

@@ -75,7 +75,7 @@ class Treasures:
         shuffle_gems = [gems.value, 0]
         shuffle_small_treasure_chest = [small_treasure_chest.value, 0]
 
-        random_coins = random.choices(shuffle_coins, weights=[100, 0], k=1)
+        random_coins = random.choices(shuffle_coins, weights=[40, 60], k=1)
         random_money_pouch = random.choices(shuffle_money_pouch, weights=[20, 80], k=1)
         random_gold_jewelry = random.choices(shuffle_gold_jewelry, weights=[15, 85], k=1)
         random_gems = random.choices(shuffle_gems, weights=[10, 90], k=1)
