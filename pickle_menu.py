@@ -2,9 +2,7 @@ import time
 import pickle
 from DungeonWorld import DungeonMap
 from movement_v2 import *
-# from characters_pickle_design import *
 from characters_adi import *
-from pyfiglet import Figlet
 
 
 def banner_text(text):
@@ -120,8 +118,27 @@ def load_player(all_obj):
 
 
 def start_game():
-    custom_fig = Figlet(font='sblood')
-    print(custom_fig.renderText('WELCOME TO THE DUNGEON'))
+    print("""
+    @@@  @@@  @@@ @@@@@@@@ @@@       @@@@@@@  @@@@@@  @@@@@@@@@@  @@@@@@@@
+ @@!  @@!  @@! @@!      @@!      !@@      @@!  @@@ @@! @@! @@! @@!     
+ @!!  !!@  @!@ @!!!:!   @!!      !@!      @!@  !@! @!! !!@ @!@ @!!!:!  
+  !:  !!:  !!  !!:      !!:      :!!      !!:  !!! !!:     !!: !!:     
+   ::.:  :::   : :: ::: : ::.: :  :: :: :  : :. :   :      :   : :: :::
+
+ @@@@@@@  @@@@@@       @@@@@@@ @@@  @@@ @@@@@@@@
+   @@!   @@!  @@@        @@!   @@!  @@@ @@!
+   @!!   @!@  !@!        @!!   @!@!@!@! @!!!:!
+   !!:   !!:  !!!        !!:   !!:  !!! !!:
+    :     : :. :          :     :   : : : :: :::
+
+ @@@@@@@  @@@  @@@ @@@  @@@  @@@@@@@  @@@@@@@@  @@@@@@  @@@  @@@
+ @@!  @@@ @@!  @@@ @@!@!@@@ !@@       @@!      @@!  @@@ @@!@!@@@
+ @!@  !@! @!@  !@! @!@@!!@! !@! @!@!@ @!!!:!   @!@  !@! @!@@!!@!
+ !!:  !!! !!:  !!! !!:  !!! :!!   !!: !!:      !!:  !!! !!:  !!!
+ :: :  :   :.:: :  ::    :   :: :: :  : :: :::  : :. :  ::    :
+ '''
+    
+""")
     banner_text("Press ENTER to START GAME")
     input()
 
