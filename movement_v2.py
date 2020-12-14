@@ -21,19 +21,19 @@ class Movement:
 
         if d == 'd':
             pos = (x + 1, y)
-            banner_text("You move to the right...")
+            banner_text("You move to the right...\n")
 
         elif d == 'a':
             pos = (x - 1, y)
-            banner_text("You move to the left...")
+            banner_text("You move to the left...\n")
 
         elif d == 'w':
             pos = (x, y - 1)
-            banner_text("You take the stairs up...")
+            banner_text("You take the stairs up...\n")
 
         elif d == 's':
             pos = (x, y + 1)
-            banner_text("You take the stairs down...")
+            banner_text("You take the stairs down...\n")
 
         else:
             pos = self.player
@@ -48,6 +48,7 @@ class Movement:
             banner_text('"This must be the exit!" You think to yourself\n')
             last_choice = int(input("But do you greed more treasure or leave with what you have?\n1 = Stay\n2 = Leave\n"))
 
+            # NEEDS TRY/EXCEPT
             if last_choice == 1:
                 banner_text("You have decided to stay and return to the previous room...")
                 input()
@@ -56,7 +57,6 @@ class Movement:
                 print(self.clean)
 
             else:
-                # EXIT GAME! HIGHSCORE! SAVE CHARACTER!
                 banner_text("You pull the lever and is met with fresh air and sound of outside, you leave the dungeon")
                 input()
                 self.banana = 5
@@ -70,29 +70,36 @@ class Movement:
             self.player = (x, y)
             pos = self.player
         else:
+            victory = False
+            goldpls = 0
             if a.board[self.player[1]][self.player[0]] == "+":
                 handle = HandleFunc()
                 monst = handle.ShuffleMonster()
-            
+                
                 for i in monst:
                     if i != None:
-                        fightOrFlight(i, in_game_char)
-
-                    #else:
-                    #    break
-                handle2 = ShuffleTest()
-                loot = handle2.ShuffleBro()
-                summa = sum(loot)
-                print(loot)
-                print(summa)
-                handle3 = Handle()
-                # all_obj = handle3.load_pickle()
-                print(all_obj)
-                
-                for i in all_obj:
-                    if i.name == in_game_char.name:
-                        in_game_char.wallet += summa
-                handle3.edit_char(all_obj)
+                        victory = fightOrFlight(i, in_game_char)
+                        goldpls += 1
+                        
+                if (victory == True or goldpls == 0):
+                    handle2 = ShuffleTest()
+                    loot = handle2.ShuffleBro()
+                    summa = sum(loot)
+                    print(loot)
+                    print(summa)
+                    handle3 = Handle()
+                    # all_obj = handle3.load_pickle()
+                    
+                    for i in all_obj:
+                        if i.name == in_game_char.name:
+                            in_game_char.wallet += summa
+                    handle3.edit_char(all_obj)
+                    # ADD IF STATEMENT FOR DIFFERENT LOOT
+                    input(f'Coin value = {loot[0]}')
+                else:
+                    self.player = (x, y)
+                    pos = self.player
+                    
 
             a.board[self.goal[1]][self.goal[0]] = "E"
             a.board[self.player[1]][self.player[0]] = "O"
@@ -106,7 +113,7 @@ def ok(mapsize, startzone, endzone, in_game_char, all_obj):
 
     while c.banana != 5:
         print(c.clean)
-        print("You ponder which direction to go next.")
+        # print(f'You loot from the previous room was {c.loot.treasure}')
         print("Theres a light both left and right of you, but also from a couple stairs leading up and down...")
         a.display_map()
         d = input("Which way? (d, a, w, s)  >>")

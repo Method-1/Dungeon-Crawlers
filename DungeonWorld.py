@@ -12,4 +12,3 @@ class DungeonMap:
     def display_map(self):
         for row in self.board:
             print(" ".join(row))
-
