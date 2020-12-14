@@ -93,8 +93,6 @@ class Movement:
             victory = False
             goldpls = 0
             if a.board[self.player[1]][self.player[0]] == "+":
-                print(len(self.monstercord))
-                input(self.monstercord)
                 if len(self.monstercord) != 0:
                     for j, k in enumerate(self.monstercord):
                         if self.player == self.monstercord[j]:
