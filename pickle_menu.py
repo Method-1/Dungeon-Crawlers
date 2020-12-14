@@ -4,6 +4,7 @@ from DungeonWorld import DungeonMap
 from movement_v2 import *
 # from characters_pickle_design import *
 from characters_adi import *
+from pyfiglet import Figlet
 
 
 def banner_text(text):
@@ -111,6 +112,7 @@ def load_player(all_obj):
     except Exception:
         print("\nIncorrect value passed forgiven alternatives... u suck!")
         in_game_char = load_player(all_obj)
+        
 
     return in_game_char
 
@@ -118,7 +120,9 @@ def load_player(all_obj):
 
 
 def start_game():
-    banner_text("\nWelcome to THE DUNGEON-CRAWLER !\nPress ENTER to START GAME")
+    custom_fig = Figlet(font='sblood')
+    print(custom_fig.renderText('WELCOME TO THE DUNGEON'))
+    banner_text("Press ENTER to START GAME")
     input()
 
     game = Handle()
@@ -130,7 +134,7 @@ def start_game():
     input_not_fulfilled = True
     while input_not_fulfilled:
         # user prompt to create or load character
-        banner_text("Create new player (N) / Load player (L)  >>")
+        banner_text("Create new player (N) / Load player (L) / Print Highscore (H)  >>")
         user_entry2 = input().upper()
 
         if user_entry2 == 'N':
@@ -152,6 +156,21 @@ def start_game():
 
             else:
                 in_game_char = load_player(all_obj)
+        elif user_entry2 == 'H':
+
+            banner_text("\nBy name (1), class-type (2) or wallet summary (3)\n>>")
+            u_choice = int(input())
+
+            if u_choice == 1:
+                all_obj.sort(key=lambda entry: entry.name)
+            elif u_choice == 2:
+                all_obj.sort(key=lambda entry: entry.character)
+            elif u_choice == 3:
+                all_obj.sort(key=lambda entry: entry.wallet, reverse=True)
+
+            print("{:>4}{:>10}{:>15}{:>10}{:>10}{:>10}{:>14}{:>13}\n".format("Name", "Type", "Initiative", "Health", "Attack", "Agility", "Specialty", "Money"))
+            for q in all_obj:
+                print(q)
 
         else:
             print("Option N/A.\nTry again...")
