@@ -15,7 +15,8 @@ Starting the game
 When you start the game, you will be presented with a few choices.
 Here's a breakdown of how it works:
 
-1. Choose either a new character or load a saved one.
+1. Choose either a new character, load a saved one, or looking up
+   the highscores.
 2. If you chose to make a new one, you will be able to choose a
    class and also name your character.
 3. Choose the map size you want
